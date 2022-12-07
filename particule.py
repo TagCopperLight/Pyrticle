@@ -25,8 +25,8 @@ class Particle:
 
         if self.shape.check_size_above_zero():
             if self.alive:
-                self.position += self.velocity * delta_t
                 self.velocity += gravity * delta_t
+                self.position += self.velocity * delta_t
 
                 self.progress, self.inverted_progress = self.shape.get_progress()
         else:

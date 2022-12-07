@@ -4,10 +4,7 @@ import numpy
 
 
 def _rotate(surface: Surface, angle: float):
-    if bool(sum((True if size > 1 else False for size in surface.get_size()))) and angle != 0:
-        return transform.rotate(surface, angle)
-    else:
-        return surface
+    return transform.rotate(surface, angle)
 
 class Shape:
     def __init__(self, alpha: int = 255, color: tuple[int, int, int] = (255, 255, 255), angle: float = 0):
@@ -16,7 +13,6 @@ class Shape:
         self.color, self._orig_color = color, color
 
         self.surface: Surface
-        self.rect: Rect
 
     def orig_alpha(self):
         return self._orig_alpha
@@ -50,7 +46,7 @@ class BaseForm(Shape):
         self.radius = radius
         self._orig_radius = self.radius
 
-        self.color, self._orig_color = list(color), color
+        self.color, self._orig_color = color, color
 
         self.make_surface()
 
