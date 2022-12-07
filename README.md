@@ -1,3 +1,3 @@
 # Pyrticule
-Particule system for pygame\n
+Particule system for pygame\
 Based on ParticlePy
