@@ -1,2 +1,2 @@
-# pyrticule
+# Pyrticule
 Particule system for pygame
