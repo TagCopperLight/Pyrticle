@@ -1,6 +1,5 @@
 from pygame import SRCALPHA, transform, draw
 from pygame.surface import Surface
-import numpy
 
 
 def _rotate(surface: Surface, angle: float):
@@ -29,13 +28,13 @@ class Shape:
     def get_progress(self) -> tuple[float, float]:
         raise NotImplementedError
 
-    def decrease(self, delta: float):
+    def decrease(self, delta: float) -> None:
         raise NotImplementedError
 
     def make_surface(self) -> Surface:
         raise NotImplementedError
 
-    def make_shape(self):
+    def make_shape(self) -> None:
         raise NotImplementedError
 
 
@@ -78,7 +77,7 @@ class BaseForm(Shape):
         self.surface = _rotate(surface=self.surface, angle=self.angle)
         return self.surface
 
-    def make_shape(self):
+    def make_shape(self) -> None:
         raise NotImplementedError
 
 

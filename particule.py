@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 from pygame.surface import Surface
 
-import shape
+import .shape
 
 
 class Particle:

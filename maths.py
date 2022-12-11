@@ -1,4 +1,4 @@
-import particule
+import .particule
 
 
 def fade_color(particle: particule.Particle, color: tuple[int, int, int], progress: float) -> tuple[int, int, int]:
