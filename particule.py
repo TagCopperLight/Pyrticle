@@ -1,7 +1,7 @@
 from pygame.math import Vector2
 from pygame.surface import Surface
 
-import .shape
+from . import shape
 
 
 class Particle:
@@ -22,6 +22,7 @@ class Particle:
 
     def update(self, delta_t: float, gravity: Vector2 = Vector2()):
         self.shape.decrease(self.delta_radius)
+        self.shape.make_shape()
 
         if self.shape.check_size_above_zero():
             if self.alive:

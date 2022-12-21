@@ -6,20 +6,20 @@ def _rotate(surface: Surface, angle: float):
     return transform.rotate(surface, angle)
 
 class Shape:
-    def __init__(self, alpha: int = 255, color: tuple[int, int, int] = (255, 255, 255), angle: float = 0):
+    def __init__(self, alpha: int = 255, color: tuple[int, int, int] = (255, 255, 255), angle: float = 0) -> None:
         self.alpha, self._orig_alpha = alpha, alpha
         self.angle, self._orig_angle = angle, angle
         self.color, self._orig_color = color, color
 
         self.surface: Surface
 
-    def orig_alpha(self):
+    def orig_alpha(self) -> int:
         return self._orig_alpha
 
-    def orig_angle(self):
+    def orig_angle(self) -> float:
         return self._orig_angle
     
-    def orig_color(self):
+    def orig_color(self) -> tuple[int, int, int]:
         return self._orig_color
 
     def check_size_above_zero(self) -> bool:
@@ -39,7 +39,7 @@ class Shape:
 
 
 class BaseForm(Shape):
-    def __init__(self, radius: float, color: tuple[int, int, int], alpha: int = 255, angle: float = 0):
+    def __init__(self, radius: float, color: tuple[int, int, int], alpha: int = 255, angle: float = 0) -> None:
         super().__init__(alpha=alpha, color=color, angle=angle)
 
         self.radius = radius
@@ -49,13 +49,13 @@ class BaseForm(Shape):
 
         self.make_surface()
 
-    def orig_radius(self):
+    def orig_radius(self) -> float:
         return self._orig_radius
 
-    def orig_color(self):
+    def orig_color(self) -> tuple[int, int, int]:
         return self._orig_color
 
-    def check_size_above_zero(self):
+    def check_size_above_zero(self) -> bool:
         if self.radius > 0:
             return True
         else:
@@ -65,10 +65,11 @@ class BaseForm(Shape):
         progress = self.radius / self._orig_radius
         return progress, 1 - progress
 
-    def decrease(self, delta: float):
+    def decrease(self, delta: float) -> None:
         self.radius -= delta
         if self.radius < 0:
             self.radius = 0
+        return None
 
     def make_surface(self) -> Surface:
         self.surface = Surface((self.radius * 2, self.radius * 2), SRCALPHA)
@@ -82,16 +83,16 @@ class BaseForm(Shape):
 
 
 class Circle(BaseForm):
-    def __init__(self, radius: float, color: tuple[int, int, int], alpha: int = 255, angle: float = 0):
+    def __init__(self, radius: float, color: tuple[int, int, int], alpha: int = 255, angle: float = 0) -> None:
         super().__init__(radius, color, alpha, angle)
 
-    def make_shape(self):
+    def make_shape(self) -> None:
         draw.circle(self.surface, self.color, (self.radius, self.radius), self.radius)
 
 
 class Rect(BaseForm):
-    def __init__(self, radius: float, color: tuple[int, int, int], alpha: int = 255, angle: float = 0):
+    def __init__(self, radius: float, color: tuple[int, int, int], alpha: int = 255, angle: float = 0) -> None:
         super().__init__(radius, color, alpha, angle)
 
-    def make_shape(self):
+    def make_shape(self) -> None:
         self.surface.fill(self.color)
